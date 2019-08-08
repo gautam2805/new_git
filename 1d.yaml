@@ -1,0 +1,10 @@
+---
+- hosts: gautam-group
+  tasks: 
+    - name: copy file to remote host
+      copy:
+        src: /automation/ansible_stuff/scripts_results/centos_get_results.txt
+        dest: /opt/gautam
+        
+    
+    # ansible playbook can be run

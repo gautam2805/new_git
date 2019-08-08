@@ -1,0 +1,56 @@
+---
+- hosts: all
+  user: root
+  sudo: yes
+  tasks:
+  
+  - group:
+      name: devops
+      state: present
+  - name: admin privileges
+  
+    user: 
+      name: devops
+      comment: "admin priv"
+      uid: 2001
+      group: devops
+  - name: htop privileges
+    action: apt name=htop state=present update_cache=yes
+    
+- hosts: all
+  user: root
+  sudo: yes
+  tasks:
+  
+  - group:
+      name: devops
+      state: present
+  - name: admin privileges
+  
+    user: 
+      name: devops
+      comment: "admin priv"
+      uid: 2001
+      group: devops
+  - name: iftop privileges
+    action: apt name=iftop state=present update_cache=yes
+  
+- hosts: all
+  user: root
+  sudo: yes
+  tasks:
+  
+  - group:
+      name: devops
+      state: present
+  - name: admin privileges
+  
+    user: 
+      name: devops
+      comment: "admin priv"
+      uid: 2001
+      group: devops
+  - name: iotop privileges
+    action: apt name=iotop state=present update_cache=yes
+    
+    

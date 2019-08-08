@@ -1,0 +1,23 @@
+---
+# host as gui will make it function on both ubuntu and centos machines
+#become yes because all packages need to be installed
+- hosts: gui
+  become: yes
+  
+  tasks:
+  - name: Install apache2 
+    apt: name=apache2 state=latest
+    ignore_errors: yes  #so that code runs even when this condtion fails
+    register: results # results will be put in this variable
+    
+  - name: Install httpd
+    yum: name=httpd state=latest
+    when: results|failed # this will be only executed if the above variable returns error
+  
+  -name: save results to a file
+  copy:
+     content: "{{ results }}" # contents of the variable results will be copied
+     dest: "./script_output/{{ inventory_hostname }}_get_results.txt"
+     # this will give us the out put in a txt file 
+    
+    
